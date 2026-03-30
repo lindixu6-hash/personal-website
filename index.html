@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>徐琳迪 - AI产品经理实习生</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,217 +12,352 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f5f7fa;
+        :root {
+            /* Yellow Morandi Color Palette */
+            --mustard: #EAD6B8;
+            --cream: #FFFDD0;
+            --vanilla: #F3E5AB;
+            --beige: #F5F5DC;
+            --ivory: #FFFFF0;
+            --dim-gray: #696969;
+            --slate-gray: #708090;
+            --cool-gray: #A9A9B7;
+            --warm-gray: #B0B0A8;
+            --goldenrod: #DAA520;
+            --wisteria: #C9A8C8;
+            --seafoam: #E0F2F1;
+            --sage: #BCAIA3;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body {
+            font-family: 'Crimson Pro', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.8;
+            color: var(--dim-gray);
+            background: var(--ivory);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--cool-gray);
+            border-radius: 3px;
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--sage);
+            padding: 4px;
+            background: var(--white);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
 
         /* Header */
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
+            background: var(--cream);
+            color: var(--dim-gray);
+            padding: 120px 0 80px;
             text-align: center;
+            border-bottom: 1px solid var(--sage);
         }
 
         header h1 {
             font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 700;
+            margin-bottom: 12px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--dim-gray);
         }
 
         header .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--slate-gray);
+        }
+
+        header .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--sage);
+            margin: 0 auto 30px;
         }
 
         header .contact-info {
-            font-size: 1.1rem;
-            opacity: 0.95;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
         }
 
         header .contact-info a {
-            color: white;
+            color: var(--dim-gray);
             text-decoration: none;
-            margin: 0 15px;
-            transition: opacity 0.3s;
+            margin: 0 20px;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
-        header .contact-info a:hover {
-            opacity: 0.7;
+        header .contact-info a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--sage);
+            transition: width 0.3s ease;
+        }
+
+        header .contact-info a:hover::after {
+            width: 100%;
+        }
+
+        /* BGM Control - Minimal */
+        .bgm-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--white);
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--sage);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--dim-gray);
+        }
+
+        .bgm-control:hover {
+            background: var(--cream);
         }
 
         /* Sections */
         section {
-            padding: 60px 0;
-            background: white;
+            padding: 80px 0;
+            border-bottom: 1px solid var(--sage);
         }
 
-        section:nth-child(even) {
-            background: #f9fafb;
+        section:last-child {
+            border-bottom: none;
         }
 
         section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 40px;
+            font-size: 1.8rem;
+            margin-bottom: 50px;
             text-align: center;
-            color: #2d3748;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            color: var(--dim-gray);
+            position: relative;
+        }
+
+        section h2::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 1px;
+            background: var(--sage);
         }
 
         /* About */
         .about-content {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #4a5568;
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--slate-gray);
+        }
+
+        .about-content p {
+            margin-bottom: 25px;
+        }
+
+        .about-content strong {
+            color: var(--goldenrod);
+            font-weight: 500;
         }
 
         /* Skills */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .skill-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+        .skill-category {
+            background: var(--white);
+            padding: 40px;
+            border: 1px solid var(--sage);
+            transition: all 0.3s ease;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        .skill-category:hover {
+            border-color: var(--wisteria);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
         }
 
-        .skill-card h3 {
-            color: #667eea;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+        .skill-category h3 {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--goldenrod);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--sage);
+            padding-bottom: 15px;
         }
 
-        .skill-card ul {
+        .skill-category ul {
             list-style: none;
             padding: 0;
         }
 
-        .skill-card li {
-            padding: 8px 0;
-            border-bottom: 1px solid #e2e8f0;
+        .skill-category li {
+            padding: 12px 0;
+            font-size: 0.95rem;
+            color: var(--slate-gray);
+            border-bottom: 1px dashed var(--cool-gray);
         }
 
-        .skill-card li:last-child {
+        .skill-category li:last-child {
             border-bottom: none;
         }
 
         /* Projects */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
         .project-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--white);
+            border: 1px solid var(--sage);
+            padding: 40px;
+            transition: all 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            border-color: var(--wisteria);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
         }
 
-        .project-card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
+        .project-header {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--sage);
         }
 
-        .project-card-header h3 {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .project-card-header .role {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .project-card-body {
-            padding: 25px;
-        }
-
-        .project-card-body .star {
-            display: inline-block;
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 8px;
-        }
-
-        .project-card-body p {
-            margin-bottom: 15px;
-            color: #4a5568;
-            line-height: 1.7;
-        }
-
-        .project-card-body .highlight {
-            background: #fef3c7;
-            padding: 2px 6px;
-            border-radius: 4px;
+        .project-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
             font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--dim-gray);
+        }
+
+        .project-header .role {
+            font-size: 0.9rem;
+            color: var(--cool-gray);
+            font-weight: 300;
+        }
+
+        .project-body {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--slate-gray);
+        }
+
+        .project-body p {
+            margin-bottom: 20px;
+        }
+
+        .project-body .star {
+            color: var(--goldenrod);
+            font-weight: 500;
+            margin-right: 4px;
+        }
+
+        .project-body .highlight {
+            background: var(--cream);
+            padding: 2px 6px;
+            font-weight: 500;
+            color: var(--dim-gray);
+            border: 1px solid var(--sage);
         }
 
         .project-link {
             display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
+            margin-top: 10px;
+            padding: 10px 24px;
+            background: transparent;
+            color: var(--dim-gray);
             text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s;
+            border: 1px solid var(--sage);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
         }
 
         .project-link:hover {
-            background: #764ba2;
+            background: var(--sage);
+            color: var(--white);
         }
 
         /* Education */
         .education-item {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto 30px;
-            padding: 25px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            background: var(--white);
+            border: 1px solid var(--sage);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            border-color: var(--wisteria);
         }
 
         .education-item h3 {
-            color: #2d3748;
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--dim-gray);
         }
 
         .education-item .meta {
-            color: #718096;
-            font-size: 0.95rem;
+            color: var(--cool-gray);
+            font-size: 0.9rem;
+            font-weight: 300;
             margin-bottom: 15px;
         }
 
@@ -231,140 +367,189 @@
         }
 
         .education-item li {
-            padding: 5px 0;
-            color: #4a5568;
-        }
-
-        /* Certificates */
-        .certificates {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .certificate {
-            background: #667eea;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 8px 0;
+            color: var(--slate-gray);
             font-size: 0.95rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         /* Footer */
         footer {
-            background: #2d3748;
-            color: white;
-            padding: 40px 0;
+            background: var(--cream);
+            color: var(--dim-gray);
+            padding: 60px 0;
             text-align: center;
+            border-top: 1px solid var(--sage);
         }
 
         footer .footer-links {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         footer .footer-links a {
-            color: white;
+            color: var(--dim-gray);
             text-decoration: none;
             margin: 0 20px;
-            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            position: relative;
         }
 
-        footer .footer-links a:hover {
-            opacity: 0.7;
+        footer .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--sage);
+            transition: width 0.3s ease;
+        }
+
+        footer .footer-links a:hover::after {
+            width: 100%;
         }
 
         footer .copyright {
-            color: #a0aec0;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            color: var(--cool-gray);
+            letter-spacing: 0.05em;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--sage);
+            color: var(--white);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             header .subtitle {
-                font-size: 1.2rem;
+                font        font-size: 1.1rem;
             }
 
             section h2 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
 
             .skills-grid,
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+
+            .bgm-control {
+                bottom: 20px;
+                right: 20px;
+                padding: 6px 12px;
+            }
+        }
+
+        /* Subtle Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Divider Line Style */
+        .line-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--sage), transparent);
+            margin: 40px 0;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- BGM Control -->
+    <div class="bgm-control" id="bgmControl">♪ Music</div>
+
+    <!-- Background Music -->
+    <audio id="bgm" loop autoplay>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
     <header>
         <div class="container">
+            <div class="avatar">
+                <img src="IMG_2802.JPG" alt="徐琳迪">
+            </div>
             <h1>徐琳迪</h1>
-            <p class="subtitle">AI 产品经理实习生 | 英语专八 | 国际化视野</p>
+            <p class="subtitle">AI 产品经理实习生</p>
+            <div class="divider"></div>
             <div class="contact-info">
-                <a href="mailto:xulindi312@163.com">📧 xulindi312@163.com</a>
-                <a href="tel:18303891187">📱 18303891187</a>
-                <a href="https://github.com/lindixu6-hash" target="_blank">💻 GitHub</a>
+                <a href="mailto:xulindi312@163.com">xulindi312@163.com</a>
+                <a href="https://github.com/lindixu6-hash" target="_blank">GitHub</a>
+                <a href="tel:18303891187">18303891187</a>
             </div>
         </div>
     </header>
 
     <!-- About Section -->
-    <section>
+    <section class="fade-in">
         <div class="container">
-            <h2>关于我</h2>
+            <h2>关于</h2>
             <div class="about-content">
-                <p>我是徐琳迪，一名对AI产品充满热情的硕士研究生。拥有<strong>英语专业八级（TEM-8）</strong>和<strong>俄语能力</strong>，英语可作为工作语言熟练交流。</p>
+                <p>徐琳迪，郑州大学国际中文教育硕士在读，<strong>英语专业八级（TEM-8）</strong>，俄语能力。</p>
                 <br>
-                <p>我有从0到1主导AI产品的真实项目经历，熟练使用Coze、Cursor、Claude等AI工具，具备Prompt Engineering和多模态AI工作流搭建能力。曾在<strong>OpenCreator（红杉资本投资）</strong>实习，参与海外增长产品运营。</p>
+                <p>从0到1主导AI产品，熟练使用Coze、Cursor、Claude等AI工具，具备Prompt Engineering和多模态AI工作流搭建能力。</p>
                 <br>
-                <p>我具备<strong>用户研究能力</strong>、<strong>数据驱动决策</strong>思维和<strong>国际化视野</strong>，对AI大模型、多模态机器翻译有实践和研究。每天2h+通过Xhunt跟踪AI前沿动态，1周内快速掌握新工具。</p>
+                <p>曾在OpenCreator（红杉资本投资）实习，担任海外增长产品经理实习。</p>
+                <br>
+                <p>每天2h+通过Xhunt跟踪AI前沿动态。</p>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section>
+    <section class="fade-in">
         <div class="container">
-            <h2>核心技能</h2>
+            <h2>技能</h2>
             <div class="skills-grid">
                 <!-- AI技术 -->
-                <div class="skill-card">
-                    <h3>🤖 AI技术与产品</h3>
+                <div class="skill-category">
+                    <h3>AI 技术</h3>
                     <ul>
-                        <li><strong>Prompt Engineering</strong>：CoT、Few-Shot、角色设定</li>
-                        <li><strong>多模态生成</strong>：Midjourney、DALL-E、Runway</li>
-                        <li><strong>LLM/SFT</strong>：参与夸克眼镜SFT优化项目</li>
-                        <li><strong>工作流搭建</strong>：Coze、Make、飞书多维表格</li>
+                        <li>Prompt Engineering：CoT、Few-Shot、角色设定</li>
+                        <li>多模态生成：Midjourney、DALL-E、Runway</li>
+                        <li>LLM/SFT：参与夸克眼镜SFT优化项目</li>
+                        <li>工作流搭建：Coze、Make、飞书多维表格</li>
+                        <li>AI工具：ChatGPT、Gemini、豆包、Claude、Cursor</li>
                     </ul>
                 </div>
 
                 <!-- 数据分析 -->
-                <div class="skill-card">
-                    <h3>📊 数据分析与实验</h3>
+                <div class="skill-category">
+                    <h3>数据分析</h3>
                     <ul>
-                        <li><strong>A/B测试</strong>：Posthog实战经验</li>
-                        <li><strong>数据分析工具</strong>：Python、SQL、Pandas</li>
-                        <li><strong>数据驱动决策</strong>：通过数据分析优化产品策略</li>
-                        <li><strong>自动化测试</strong>：Playwright</li>
+                        <li>A/B测试：Posthog实战经验</li>
+                        <li>数据分析工具：Python、SQL、Pandas</li>
+                        <li>数据驱动决策：通过数据分析优化产品策略</li>
+                        <li>自动化测试：Playwright</li>
                     </ul>
                 </div>
 
                 <!-- 语言能力 -->
-                <div class="skill-card">
-                    <h3>🌍 语言能力</h3>
+                <div class="skill-category">
+                    <h3>语言</h3>
                     <ul>
-                        <li><strong>英语</strong>：专业八级（TEM-8），可作为工作语言</li>
-                        <li><strong>俄语</strong>：日常对话和基础翻译</li>
-                        <li><strong>跨文化交际</strong>：了解不同文化差异</li>
-                        <li><strong>国际化视野</strong>：深度使用TikTok、X等海外社媒</li>
+                        <li>英语：专业八级（TEM-8），可作为工作语言</li>
+                        <li>俄语：日常对话和基础翻译</li>
+                        <li>跨文化交际：了解不同文化差异，具备国际化视野</li>
+                        <li>海外产品经验：深度使用TikTok、X等海外社媒</li>
                     </ul>
                 </div>
             </div>
@@ -372,49 +557,49 @@
     </section>
 
     <!-- Projects Section -->
-    <section>
+    <section class="fade-in">
         <div class="container">
-            <h2>项目经历</h2>
+            <h2>项目</h2>
             <div class="projects-grid">
                 <!-- 项目1 -->
                 <div class="project-card">
-                    <div class="project-card-header">
+                    <div class="project-header">
                         <h3>电商AI内容生成工具</h3>
                         <p class="role">0-1 产品负责人 | 2025.11</p>
                     </div>
-                    <div class="project-card-body">
+                    <div class="project-body">
                         <p><span class="star">S</span> 通过访谈、录屏观察、成本分析挖掘"高频、高成本、可规模化"真实需求</p>
                         <p><span class="star">T</span> 负责需求→PRD→开发→测试→上线→反馈→优化全流程</p>
-                        <p><span class="star">A</span> 开展A/B对比测试（Nano Banana vs 豆包Seedream 4.5）；输出Badcase并优化Prompt策略</p>
-                        <p><span class="star">R</span> 内容生产效率从<span class="highlight">天级提升至分钟级</span>，成本显著降低</p>
-                        <a href="https://github.com/lindixu6-hash/coze-hat-content-gen" class="project-link" target="_blank">查看项目 →</a>
+                        <p><span class="star">A</span> 开展A/B对比测试（Nano Banana vs 豆包Seedream 4.5）</p>
+                        <p><span class="star">R</span> 内容生产效率从天级提升至分钟级，成本显著降低</p>
+                        <a href="https://github.com/lindixu6-hash/coze-hat-content-gen" class="project-link" target="_blank">查看项目</a>
                     </div>
                 </div>
 
                 <!-- 项目2 -->
                 <div class="project-card">
-                    <div class="project-card-header">
+                    <div class="project-header">
                         <h3>OpenCreator 海外增长</h3>
-                        <p class="role">海外增长产品经理 | 2026.02-03</p>
+                        <p class="role">海外增长产品经理实习 | 2026.02-03</p>
                     </div>
-                    <div class="project-card-body">
+                    <div class="project-body">
                         <p><span class="star">S</span> OpenCreator为面向海外市场的AI生成工具产品，目标用户覆盖北美、欧洲等</p>
                         <p><span class="star">T</span> 负责海外市场产品增长，完成市场调研→竞品分析→用户访谈→痛点分析→策略制定→A/B测试全流程</p>
-                        <p><span class="star">A</span> 筛选5个海外AI竞品，分析核心功能、定价策略、增长方式；基于Posthog开展A/B Testing</p>
-                        <p><span class="star">R</span> 在跨职能团队中高效协作，协助推进产品优化需求</p>
+                        <p><span class="star">A</span> 筛选5个海外AI图片/视频生成竞品，分析核心功能、定价策略、增长方式；结合国内用户访谈和海外用户留言制定产品提升策略；基于Posthog开展A/B Testing，通过Session Replay发现用户转存模版环节问题，与开发协调优化指示按钮</p>
+                        <p><span class="star">R</span> 在跨职能团队中高效协作，协调开发团队推进产品优化需求，协助设计团队制作KOL合作素材，与运营团队同步营销活动</p>
                     </div>
                 </div>
 
                 <!-- 项目3 -->
                 <div class="project-card">
-                    <div class="project-card-header">
+                    <div class="project-header">
                         <h3>TikTok KOL 增长</h3>
                         <p class="role">KOL BD | Temu | 2025.10-12</p>
                     </div>
-                    <div class="project-card-body">
-                        <p><span class="star">S</span> Temu拓展北美市场，需通过TikTok KOL营销建立品牌影响力</p>
-                        <p><span class="star">A</span> 运用<span class="highlight">Prompt Engineering + GPT</span>批量生成个性化邀约文案与Brief模板</p>
-                        <p><span class="star">R</span> 首月建联有效达人<span class="highlight">10+</span>，合作转化率从12%提升至28%，邀约回复率从8%提升至22%</p>
+                    <div class="project-body">
+                        <p><span class="star">A</span> 运用<span class="highlight">Prompt Engineering + GPT</span>批量生成个性化邀约文案</p>
+                        <p><span class="star">R</span> 首月建联有效达人10+，合作转化率从12%提升至28%</p>
+                        <p><span class="star">R</span> 邀约回复率从8%提升至22%，人力成本降低60%</p>
                     </div>
                 </div>
             </div>
@@ -422,9 +607,9 @@
     </section>
 
     <!-- Education Section -->
-    <section>
+    <section class="fade-in">
         <div class="container">
-            <h2>教育背景</h2>
+            <h2>教育</h2>
             <div class="education-item">
                 <h3>郑州大学 | 国际中文教育硕士（MTCSOL）</h3>
                 <p class="meta">2024.09 - 2027.06（在读）</p>
@@ -434,7 +619,7 @@
                 </ul>
             </div>
             <div class="education-item">
-                <h3>河南牧业经济学院 | 商务英语 学士</h3>
+                <h3>        河南牧业经济学院 | 商务英语 学士</h3>
                 <p class="meta">2020.09 - 2024.06</p>
                 <ul>
                     <li>英语专业八级（TEM-8）</li>
@@ -449,12 +634,76 @@
     <footer>
         <div class="container">
             <div class="footer-links">
-                <a href="mailto:xulindi312@163.com">📧 Email</a>
-                <a href="https://github.com/lindixu6-hash" target="_blank">💻 GitHub</a>
-                <a href="tel:18303891187">📱 联系电话</a>
+                <a href="mailto:xulindi312@163.com">Email</a>
+                <a href="https://github.com/lindixu6-hash" target="_blank">GitHub</a>
+                <a href="tel:18303891187">Phone</a>
             </div>
-            <p class="copyright">© 2026 徐琳迪. All rights reserved.</p>
+            <p class="copyright">© 2026 徐琳迪</p>
         </div>
     </footer>
+
+    <script>
+        // BGM Control
+        const bgm = document.getElementById('bgm');
+        const bgmControl = document.getElementById('bgmControl');
+        let isPlaying = false;
+
+        // Auto-play on page load
+        window.addEventListener('load', function() {
+            bgm.play().then(() => {
+                isPlaying = true;
+                bgmControl.textContent = '♫ Music';
+            }).catch(error => {
+                console.log('Auto-play prevented:', error);
+                bgmControl.textContent = '♪ Music';
+            });
+        });
+
+        bgmControl.addEventListener('click', function() {
+            if (isPlaying) {
+                bgm.pause();
+                bgmControl.textContent = '♪ Music';
+            } else {
+                bgm.play().catch(error => {
+                    console.log('Play prevented:', error);
+                    bgmControl.textContent = '♫ Music';
+                });
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.fade-in');
+
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('visible');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+        window.addEventListener('load', reveal);
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
