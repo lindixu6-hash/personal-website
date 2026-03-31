@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>徐琳迪 - AI产品经理实习生</title>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -36,6 +37,18 @@
             background: var(--ivory);
             font-weight: 400;
             letter-spacing: 0.02em;
+            position: relative;
+        }
+
+        /* Three.js Canvas Background */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
         }
 
         /* Minimalist Scrollbar */
@@ -73,11 +86,13 @@
 
         /* Header */
         header {
-            background: var(--cream);
+            background: rgba(255, 255, 240, 0.95);
+            backdrop-filter: blur(10px);
             color: var(--dim-gray);
             padding: 120px 0 80px;
             text-align: center;
             border-bottom: 1px solid var(--sage);
+            position: relative;
         }
 
         header h1 {
@@ -137,7 +152,8 @@
             bottom: 30px;
             right: 30px;
             z-index: 1000;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 8px 16px;
             font-size: 0.85rem;
             letter-spacing: 0.1em;
@@ -155,6 +171,9 @@
         section {
             padding: 80px 0;
             border-bottom: 1px solid var(--sage);
+            background: rgba(255, 255, 240, 0.85);
+            backdrop-filter: blur(5px);
+            position: relative;
         }
 
         section:last-child {
@@ -210,7 +229,8 @@
         }
 
         .skill-category {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 40px;
             border: 1px solid var(--sage);
             transition: all 0.3s ease;
@@ -258,7 +278,8 @@
         }
 
         .project-card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--sage);
             padding: 40px;
             transition: all 0.3s ease;
@@ -337,7 +358,8 @@
             max-width: 700px;
             margin: 0 auto 30px;
             padding: 30px;
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--sage);
             transition: all 0.3s ease;
         }
@@ -374,7 +396,8 @@
 
         /* Footer */
         footer {
-            background: var(--cream);
+            background: rgba(255, 255, 240, 0.95);
+            backdrop-filter: blur(10px);
             color: var(--dim-gray);
             padding: 60px 0;
             text-align: center;
@@ -433,7 +456,7 @@
             }
 
             header .subtitle {
-                font        font-size: 1.1rem;
+                font-size: 1.1rem;
             }
 
             section h2 {
@@ -474,12 +497,15 @@
     </style>
 </head>
 <body>
+    <!-- Three.js Background Canvas -->
+    <div id="canvas-container"></div>
+
     <!-- BGM Control -->
     <div class="bgm-control" id="bgmControl">♪ Music</div>
 
     <!-- Background Music -->
     <audio id="bgm" loop autoplay>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+        <source src="Yellow.mp3" type="audio/mpeg">
     </audio>
 
     <header>
@@ -568,10 +594,10 @@
                         <p class="role">0-1 产品负责人 | 2025.11</p>
                     </div>
                     <div class="project-body">
-                        <p><span class="star">S</span> 通过访谈、录屏观察、成本分析挖掘"高频、高成本、可规模化"真实需求</p>
+                        <p><span class="star">S</span> 通过访谈、录屏观察、成本分析挖掘"高频、高成本、可规模化"真实需求，通过用户反馈下探挖掘深层痛点；用Coze做最小MVP验证技术可行性，核算AI成本不足人工成本50%，具备ROI意识</p>
                         <p><span class="star">T</span> 负责需求→PRD→开发→测试→上线→反馈→优化全流程</p>
-                        <p><span class="star">A</span> 开展A/B对比测试（Nano Banana vs 豆包Seedream 4.5）</p>
-                        <p><span class="star">R</span> 内容生产效率从天级提升至分钟级，成本显著降低</p>
+                        <p><span class="star">A</span> 撰写完整PRD文档；开展A/B对比测试（对比Nano Banana与豆包Seedream 4.5）；输出人物失真、风格偏差等典型Badcase并优化Prompt策略</p>
+                        <p><span class="star">R</span> 实现AI内容生产闭环，支持商品图一键上传，可自然语言自定义场景与服饰，生成8张老钱松弛感风格小红书博主模特图+5个3s短视频，可批量同步至飞书多维表格；内容生产效率从天级提升至分钟级，实现数千倍提升，成本显著降低；后续开展童帽工作流与选股建议智能体（一路长虹）合作</p>
                         <a href="https://github.com/lindixu6-hash/coze-hat-content-gen" class="project-link" target="_blank">查看项目</a>
                     </div>
                 </div>
@@ -643,12 +669,111 @@
     </footer>
 
     <script>
+        // Three.js Breathing Particles Background
+        const canvasContainer = document.getElementById('canvas-container');
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        canvasContainer.appendChild(renderer.domElement);
+
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 150;
+        const posArray = new Float32Array(particlesCount * 3);
+        const originalPosArray = new Float32Array(particlesCount * 3);
+
+        for (let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 15;
+            originalPosArray[i] = posArray[i];
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        // Create custom shader material for soft particles
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.08,
+            color: 0xDAA520,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        camera.position.z = 5;
+
+        // Mouse interaction
+        const mouse = { x: 0, y: 0 };
+        let targetMouse = { x: 0, y: 0 };
+
+        document.addEventListener('mousemove', (event) => {
+            targetMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            targetMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation
+        let time = 0;
+        const animate = () => {
+            requestAnimationFrame(animate);
+            time += 0.005;
+
+            // Smooth mouse movement
+            mouse.x += (targetMouse.x - mouse.x) * 0.02;
+            mouse.y += (targetMouse.y - mouse.y) * 0.02;
+
+            // Breathing effect - slow oscillation
+            const positions = particlesGeometry.attributes.position.array;
+
+            for (let i = 0; i < particlesCount; i++) {
+                const i3 = i * 3;
+
+                // Gentle floating motion (breathing effect)
+                positions[i3] = originalPosArray[i3] + Math.sin(time + i * 0.5) * 0.3;
+                positions[i3 + 1] = originalPosArray[i3 + 1] + Math.cos(time + i * 0.3) * 0.3;
+                positions[i3 + 2] = originalPosArray[i3 + 2] + Math.sin(time + i * 0.7) * 0.2;
+
+                // Mouse ripple effect (subtle)
+                const dx = positions[i3] - mouse.x * 5;
+                const dy = positions[i3 + 1] - mouse.y * 5;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 2) {
+                    const force = (2 - distance) / 2;
+                    positions[i3] += dx * force * 0.02;
+                    positions[i3 + 1] += dy * force * 0.02;
+                }
+            }
+
+            particlesGeometry.attributes.position.needsUpdate = true;
+
+            // Subtle rotation
+            particlesMesh.rotation.y = time * 0.05;
+            particlesMesh.rotation.x = time * 0.02;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
         // BGM Control
         const bgm = document.getElementById('bgm');
         const bgmControl = document.getElementById('bgmControl');
         let isPlaying = false;
 
-        // Auto-play on page load
         window.addEventListener('load', function() {
             bgm.play().then(() => {
                 isPlaying = true;
