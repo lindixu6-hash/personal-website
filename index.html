@@ -167,7 +167,7 @@
             background: var(--cream);
         }
 
-        /* 小迪Bot - 球样式 */
+        /* 小迪Bot - 兔子样式 */
         .xiaodi-bot {
             position: fixed;
             bottom: 100px;
@@ -181,29 +181,59 @@
             transform: scale(1.1);
         }
 
-        .bot-avatar {
+        .rabbit-avatar {
             width: 70px;
             height: 70px;
-            background: radial-gradient(circle at 30% 30%, #FFED4E, var(--goldenrod));
-            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cream), var(--vanilla));
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             border: 3px solid var(--sage);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             position: relative;
-            animation: ballBounce 2s ease-in-out infinite;
+            animation: rabbitBounce 2s ease-in-out infinite;
         }
 
-        @keyframes ballBounce {
+        @keyframes rabbitBounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
 
-        .bot-avatar::before {
-            content: '🤖';
+        .rabbit-avatar::before {
+            content: '🐰';
+            display: block;
+        }
+
+        .rabbit-ears {
             position: absolute;
-            top: 50%;
+            top: -15px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2rem;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 30px;
+        }
+
+        .rabbit-ears::before,
+        .rabbit-ears::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 25px;
+            background: linear-gradient(135deg, var(--cream), var(--vanilla));
+            border: 2px solid var(--sage);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .rabbit-ears::before {
+            left: 8px;
+            transform: rotate(-10deg);
+        }
+
+        .rabbit-ears::after {
+            right: 8px;
+            transform: rotate(10deg);
         }
 
         .bot-label {
@@ -786,14 +816,16 @@
 
     <!-- 小迪Bot -->
     <div class="xiaodi-bot" id="xiaodiBot">
-        <div class="bot-avatar"></div>
+        <div class="rabbit-avatar">
+            <div class="rabbit-ears"></div>
+        </div>
         <div class="bot-label">小迪bot</div>
     </div>
 
     <!-- 聊天窗口 -->
     <div class="chat-window" id="chatWindow">
         <div class="chat-header">
-            <h3>🤖 小迪bot</h3>
+            <h3>🐰 小迪bot</h3>
             <button class="chat-close" id="chatClose">×</button>
         </div>
         <div class="chat-messages" id="chatMessages">
