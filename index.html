@@ -167,6 +167,288 @@
             background: var(--cream);
         }
 
+        /* 小迪Bot - 兔子样式 */
+        .xiaodi-bot {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .xiaodi-bot:hover {
+            transform: scale(1.1);
+        }
+
+        .rabbit-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--cream), var(--vanilla));
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            border: 3px solid var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: rabbitBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes rabbitBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .rabbit-avatar::before {
+            content: '🐰';
+            display: block;
+        }
+
+        .rabbit-ears {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 30px;
+        }
+
+        .rabbit-ears::before,
+        .rabbit-ears::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 25px;
+            background: linear-gradient(135deg, var(--cream), var(--vanilla));
+            border: 2px solid var(--sage);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .rabbit-ears::before {
+            left: 8px;
+            transform: rotate(-10deg);
+        }
+
+        .rabbit-ears::after {
+            right: 8px;
+            transform: rotate(10deg);
+        }
+
+        .bot-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 0.75rem;
+            color: var(--dim-gray);
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2px 8px;
+            border-radius: 10px;
+            border: 1px solid var(--sage);
+        }
+
+        /* 聊天窗口 */
+        .chat-window {
+            position: fixed;
+            bottom: 180px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            max-height: 70vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid var(--sage);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.3s ease;
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--cream), var(--vanilla));
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header h3 {
+            font-size: 1.1rem;
+            color: var(--dim-gray);
+            font-weight: 500;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dim-gray);
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .chat-close:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            animation: messageIn 0.3s ease;
+        }
+
+        @keyframes messageIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.bot {
+            background: var(--cream);
+            color: var(--dim-gray);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            border: 1px solid var(--sage);
+        }
+
+        .message.user {
+            background: var(--goldenrod);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .typing-indicator {
+            display: none;
+            align-self: flex-start;
+            background: var(--cream);
+            padding: 12px 16px;
+            border-radius: 15px;
+            border: 1px solid var(--sage);
+            border-bottom-left-radius: 5px;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--dim-gray);
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: typing 1.4s ease-in-out infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 2px solid var(--sage);
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 240, 0.5);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid var(--sage);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: var(--goldenrod);
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--goldenrod);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-send:hover {
+            background: var(--dim-gray);
+            transform: scale(1.05);
+        }
+
         /* Sections */
         section {
             padding: 80px 0;
@@ -503,6 +785,36 @@
     <!-- BGM Control -->
     <div class="bgm-control" id="bgmControl">♪ Music</div>
 
+    <!-- 小迪Bot -->
+    <div class="xiaodi-bot" id="xiaodiBot">
+        <div class="rabbit-avatar">
+            <div class="rabbit-ears"></div>
+        </div>
+        <div class="bot-label">小迪bot</div>
+    </div>
+
+    <!-- 聊天窗口 -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h3>🐰 小迪bot</h3>
+            <button class="chat-close" id="chatClose">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                你好！我是小迪，琳迪的AI助手~ 有什么想了解的吗？可以问我关于琳迪的技能、项目、教育背景等问题哦！✨
+            </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="输入消息...">
+            <button class="chat-send" id="chatSend">→</button>
+        </div>
+    </div>
+
     <!-- Background Music -->
     <audio id="bgm" loop autoplay>
         <source src="Yellow.mp3" type="audio/mpeg">
@@ -829,6 +1141,122 @@
                 }
             });
         });
+
+        // 小迪Bot 交互逻辑
+        const xiaodiBot = document.getElementById('xiaodiBot');
+        const chatWindow = document.getElementById('chatWindow');
+        const chatClose = document.getElementById('chatClose');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // 打开/关闭聊天窗口
+        xiaodiBot.addEventListener('click', () => {
+            chatWindow.classList.add('active');
+        });
+
+        chatClose.addEventListener('click', () => {
+            chatWindow.classList.remove('active');
+        });
+
+        // 发送消息
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // 添加用户消息
+            addMessage(message, 'user');
+            chatInput.value = '';
+
+            // 显示正在输入
+            typingIndicator.classList.add('active');
+
+            // 模拟AI回复延迟
+            setTimeout(() => {
+                typingIndicator.classList.remove('active');
+                const reply = generateReply(message);
+                addMessage(reply, 'bot');
+            }, 1000 + Math.random() * 1000);
+        }
+
+        chatSend.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+
+        // 添加消息到聊天窗口
+        function addMessage(text, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = text;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // 生成AI回复
+        function generateReply(message) {
+            const lowerMessage = message.toLowerCase();
+
+            // 关于技能
+            if (lowerMessage.includes('技能') || lowerMessage.includes('能力') || lowerMessage.includes('会什么')) {
+                return '琳迪的技能主要包括：\n• AI技术：Prompt Engineering、多模态生成、LLM/SFT\n• 数据分析：A/B测试、Python、SQL\n• 语言能力：英语专八、俄语\n想了解更多细节吗？';
+            }
+
+            // 关于项目
+            if (lowerMessage.includes('项目') || lowerMessage.includes('作品')) {
+                return '琳迪做过几个很棒的项目：\n• 电商AI内容生成工具（0-1产品负责人）\n• OpenCreator海外增长（产品经理实习）\n• TikTok KOL增长（Temu）\n对哪个项目感兴趣？';
+            }
+
+            // 关于教育
+            if (lowerMessage.includes('教育') || lowerMessage.includes('学校') || lowerMessage.includes('学历')) {
+                return '琳迪目前是郑州大学国际中文教育硕士在读，本科是河南牧业经济学院商务英语，英语专业八级哦！';
+            }
+
+            // 关于联系
+            if (lowerMessage.includes('联系') || lowerMessage.includes('邮箱') || lowerMessage.includes('电话')) {
+                return '可以通过以下方式联系琳迪：\n• 邮箱：xulindi312@163.com\n• GitHub：lindixu6-hash\n• 电话：18303891187';
+            }
+
+            // 关于AI
+            if (lowerMessage.includes('ai') || lowerMessage.includes('人工智能')) {
+                return '琳迪对AI很有热情！每天都会花2小时+跟踪AI前沿动态，熟练使用Coze、Cursor、Claude等工具，还从0到1做过AI产品呢！';
+            }
+
+            // 关于实习
+            if (lowerMessage.includes('实习') || lowerMessage.includes('工作')) {
+                return '琳迪曾在OpenCreator（红杉资本投资）实习，担任海外增长产品经理，负责A/B测试、用户访谈、产品优化等工作！';
+            }
+
+            // 关于性格
+            if (lowerMessage.includes('性格') || lowerMessage.includes('特点')) {
+                return '琳迪是ESTJ性格，常年健身，性格开朗善于沟通，注重用户体验，对细节要求高！';
+            }
+
+            // 打招呼
+            if (lowerMessage.includes('你好') || lowerMessage.includes('hi') || lowerMessage.includes('hello')) {
+                return '你好你好！很高兴认识你~ 我是琳迪的AI助手小迪，有什么想了解的吗？✨';
+            }
+
+            // 感谢
+            if (lowerMessage.includes('谢谢') || lowerMessage.includes('感谢')) {
+                return '不客气~ 很高兴能帮到你！还有其他想了解的吗？';
+            }
+
+            // 再见
+            if (lowerMessage.includes('再见') || lowerMessage.includes('拜拜')) {
+                return '好的，再见！祝你有美好的一天~ 🌟';
+            }
+
+            // 默认回复
+            const defaultReplies = [
+                '这个问题很有趣！你可以问我关于琳迪的技能、项目、教育背景等问题~',
+                '我是小迪，琳迪的AI助手。想了解她的哪些方面呢？',
+                '可以说得更具体一些吗？比如技能、项目经历、教育背景等~',
+                '我还在学习中，目前可以回答关于琳迪的基本信息。要不要试试问点别的？'
+            ];
+            return defaultReplies[Math.floor(Math.random() * defaultReplies.length)];
+        }
     </script>
 </body>
 </html>
