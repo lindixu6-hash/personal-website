@@ -786,17 +786,83 @@
             }
         }
 
-        /* Subtle Scroll Animation */
-        .fade-in {
+        /* Scroll Animations - AOS Style */
+        [data-aos] {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition-property: transform, opacity;
         }
 
-        .fade-in.visible {
+        /* Fade Up */
+        [data-aos="fade-up"] {
+            transform: translateY(100px);
+        }
+        [data-aos="fade-up"].aos-animate {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Fade Down */
+        [data-aos="fade-down"] {
+            transform: translateY(-100px);
+        }
+        [data-aos="fade-down"].aos-animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Fade Left */
+        [data-aos="fade-left"] {
+            transform: translateX(-100px);
+        }
+        [data-aos="fade-left"].aos-animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Fade Right */
+        [data-aos="fade-right"] {
+            transform: translateX(100px);
+        }
+        [data-aos="fade-right"].aos-animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Zoom In */
+        [data-aos="zoom-in"] {
+            transform: scale(0.8);
+        }
+        [data-aos="zoom-in"].aos-animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Flip Up */
+        [data-aos="flip-up"] {
+            transform: perspective(1000px) rotateX(-20deg);
+        }
+        [data-aos="flip-up"].aos-animate {
+            opacity: 1;
+            transform: perspective(1000px) rotateX(0);
+        }
+
+        /* Animation durations */
+        [data-aos][data-aos-duration="400"] { transition-duration: 400ms; }
+        [data-aos][data-aos-duration="600"] { transition-duration: 600ms; }
+        [data-aos][data-aos-duration="800"] { transition-duration: 800ms; }
+        [data-aos][data-aos-duration="1000"] { transition-duration: 1000ms; }
+
+        /* Default duration */
+        [data-aos] {
+            transition-duration: 800ms;
+            transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Stagger delays */
+        [data-aos][data-aos-delay="100"] { transition-delay: 100ms; }
+        [data-aos][data-aos-delay="200"] { transition-delay: 200ms; }
+        [data-aos][data-aos-delay="300"] { transition-delay: 300ms; }
+        [data-aos][data-aos-delay="400"] { transition-delay: 400ms; }
 
         /* Divider Line Style */
         .line-divider {
@@ -876,15 +942,15 @@
     <!-- About Section -->
     <section class="fade-in">
         <div class="container">
-            <h2>关于</h2>
+            <h2 data-aos="fade-down">关于</h2>
             <div class="about-content">
-                <p>徐琳迪，郑州大学国际中文教育硕士在读，<strong>英语专业八级（TEM-8）</strong>，俄语能力。</p>
+                <p data-aos="fade-up" data-aos-delay="100">徐琳迪，郑州大学国际中文教育硕士在读，<strong>英语专业八级（TEM-8）</strong>，俄语能力。</p>
                 <br>
-                <p>从0到1主导AI产品，熟练使用Coze、Cursor、Claude等AI工具，具备Prompt Engineering和多模态AI工作流搭建能力。</p>
+                <p data-aos="fade-up" data-aos-delay="200">从0到1主导AI产品，熟练使用Coze、Cursor、Claude等AI工具，具备Prompt Engineering和多模态AI工作流搭建能力。</p>
                 <br>
-                <p>曾在OpenCreator（红杉资本投资）实习，担任海外增长产品经理实习。</p>
+                <p data-aos="fade-up" data-aos-delay="300">曾在OpenCreator（红杉资本投资）实习，担任海外增长产品经理实习。</p>
                 <br>
-                <p>每天2h+通过Xhunt跟踪AI前沿动态。</p>
+                <p data-aos="fade-up" data-aos-delay="400">每天2h+通过Xhunt跟踪AI前沿动态。</p>
             </div>
         </div>
     </section>
@@ -892,10 +958,10 @@
     <!-- Skills Section -->
     <section class="fade-in">
         <div class="container">
-            <h2>技能</h2>
+            <h2 data-aos="fade-down">技能</h2>
             <div class="skills-grid">
                 <!-- AI技术 -->
-                <div class="skill-category">
+                <div class="skill-category" data-aos="zoom-in" data-aos-delay="100">
                     <h3>AI 技术</h3>
                     <ul>
                         <li>Prompt Engineering：CoT、Few-Shot、角色设定</li>
@@ -907,7 +973,7 @@
                 </div>
 
                 <!-- 数据分析 -->
-                <div class="skill-category">
+                <div class="skill-category" data-aos="zoom-in" data-aos-delay="200">
                     <h3>数据分析</h3>
                     <ul>
                         <li>A/B测试：Posthog实战经验</li>
@@ -918,7 +984,7 @@
                 </div>
 
                 <!-- 语言能力 -->
-                <div class="skill-category">
+                <div class="skill-category" data-aos="zoom-in" data-aos-delay="300">
                     <h3>语言</h3>
                     <ul>
                         <li>英语：专业八级（TEM-8），可作为工作语言</li>
@@ -934,10 +1000,10 @@
     <!-- Projects Section -->
     <section class="fade-in">
         <div class="container">
-            <h2>项目</h2>
+            <h2 data-aos="fade-down">项目</h2>
             <div class="projects-grid">
                 <!-- 项目1 -->
-                <div class="project-card">
+                <div class="project-card" data-aos="flip-up" data-aos-delay="100">
                     <div class="project-header">
                         <h3>电商AI内容生成工具</h3>
                         <p class="role">0-1 产品负责人 | 2025.11</p>
@@ -952,7 +1018,7 @@
                 </div>
 
                 <!-- 项目2 -->
-                <div class="project-card">
+                <div class="project-card" data-aos="flip-up" data-aos-delay="200">
                     <div class="project-header">
                         <h3>OpenCreator 海外增长</h3>
                         <p class="role">海外增长产品经理实习 | 2026.02-03</p>
@@ -966,7 +1032,7 @@
                 </div>
 
                 <!-- 项目3 -->
-                <div class="project-card">
+                <div class="project-card" data-aos="flip-up" data-aos-delay="300">
                     <div class="project-header">
                         <h3>TikTok KOL 增长</h3>
                         <p class="role">KOL BD | Temu | 2025.10-12</p>
@@ -984,8 +1050,8 @@
     <!-- Education Section -->
     <section class="fade-in">
         <div class="container">
-            <h2>教育</h2>
-            <div class="education-item">
+            <h2 data-aos="fade-down">教育</h2>
+            <div class="education-item" data-aos="fade-left" data-aos-delay="100">
                 <h3>郑州大学 | 国际中文教育硕士（MTCSOL）</h3>
                 <p class="meta">2024.09 - 2027.06（在读）</p>
                 <ul>
@@ -993,7 +1059,7 @@
                     <li>核心课程：第二语言习得、跨文化交际、语言测试与评估</li>
                 </ul>
             </div>
-            <div class="education-item">
+            <div class="education-item" data-aos="fade-right" data-aos-delay="200">
                 <h3>        河南牧业经济学院 | 商务英语 学士</h3>
                 <p class="meta">2020.09 - 2024.06</p>
                 <ul>
@@ -1146,7 +1212,39 @@
             isPlaying = !isPlaying;
         });
 
-        // Scroll Reveal Animation
+        // AOS-style Animation Trigger
+        function initAOS() {
+            const aosElements = document.querySelectorAll('[data-aos]');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                        // Optional: Unobserve after animating
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            aosElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize AOS when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAOS);
+        } else {
+            initAOS();
+        }
+
+        // Scroll Reveal Animation (backup for sections without data-aos)
         function reveal() {
             const reveals = document.querySelectorAll('.fade-in');
 
